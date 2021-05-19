@@ -1,0 +1,61 @@
+spring:
+  application:
+    name: accountService
+  jpa:
+    hibernate:
+      ddl-auto: none
+      use-new-id-generator-mappings: true
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+  datasource:
+    url: jdbc:postgresql://localhost:5432/envel
+    driver-class-name: org.postgresql.Driver
+    username: envel
+    password: envel
+    initialization-mode: always
+    tomcat:
+      validation-query: select 1
+  flyway:
+    url: jdbc:postgresql://localhost:5432/envel
+    user: envel
+    password: envel
+    schemas: account
+
+
+
+logging:
+  level:
+    root: info
+    flyway: debug
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql:
+              BasicBinder: info
+        SQL: debug
+    com.envel.accountservice: debug
+
+graphql:
+  spqr:
+    gui:
+      enabled: true
+      page-title: Account Service Play Ground
+
+keycloak:
+  auth-server-url: http://localhost:8180/auth
+  realm: spring-boot
+  resource: account_service
+  credentials:
+    secret: 12f26db0-d55f-4612-bd3d-2125c9051603
+  bearer-only: true
+  public-client: true
+  principal-attribute: preferred_username
+audit:
+  url: http://localhost:8087/graphql
+
+auth:
+  token: eyJhbGciOiJSUzUxMiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIxSDNoREVXRHhYcnFEUV9YdzMtNENPNkE2dnRoSXlDdHlPZWZzRjlKc1N3In0.eyJleHAiOjE2MjE0NjQ0OTUsImlhdCI6MTYyMTQyODQ5NSwianRpIjoiZjI0YWU0NzUtN2E0OS00ZmU0LWIyMjctOTRmNDEyMTM4NGY1IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MTgwL2F1dGgvcmVhbG1zL3NwcmluZy1ib290IiwiYXVkIjoiYWNjb3VudCIsInN1YiI6ImE3OTFiZDlhLTVlZGItNDE5MC1hZWY1LWY1MzA5Y2QzOTFkOCIsInR5cCI6IkJlYXJlciIsImF6cCI6InNwcmluZy1ib290Iiwic2Vzc2lvbl9zdGF0ZSI6ImI1Yjk1MzYyLTBhZDYtNGE1Ni04MjllLWI2ODJlYmI5ODA4MSIsImFjciI6IjEiLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiIsInVzZXIiLCJkZWZhdWx0LXJvbGVzLXNwcmluZy1ib290Il19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJlbWFpbCBwcm9maWxlIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJuYW1lIjoiYWNjb3VudFNlcnZpY2UiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJhY2NvdW50c2VydmljZSIsImdpdmVuX25hbWUiOiJhY2NvdW50U2VydmljZSJ9.GPPfxjFwA5h62W246J-2OYXCljuAR6VQPY6Ffb04VJ9OHO5y8g951DfO5lwQYtV7JeopxbGMRCL0giimnGmXr0yZKgJmmmE1SfigbtpfN7w3WIOH_uvrcGUkH51xu8oui-OduD8yTx7rahvLC1U82hXGxHA_c0pu22EMCJ-TnhA-RiYIMxsSGAW77h72NnzEhMdXCCBvGXlYGB2B-DVhqc-06016l8MBsrCjOc1CcvgNlsaHLUSAEsq6xuaaseZxZz_KMwT8PQyPByoMFbtMIAsTtqI37SzpgY1mDrRKVtcPVdEZtRJU-NPszTRFGnVr03ADCXfFhmQp1uJHjOAJTg
